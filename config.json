@@ -1,0 +1,212 @@
+{
+  "versions": {
+    "Debug": "03-02-21 00:16:31",
+    "NTSC 1.0": "98-10-21 04:56:31"
+  },
+  "ovl_kaleido_scope": {
+    "Debug": {
+      "item_usability_offset": "0x0173DC"
+    },
+    "NTSC 1.0": {
+      "item_usability_offset": "0x0165B4"
+    },
+    "all": {
+      "item_usability_length": 128,
+      "slot_names": [
+        "Sticks",
+        "Deku Nuts",
+        "Bombs",
+        "Bow",
+        "Fire Arrows",
+        "Din's Fire",
+        "Slingshot",
+        "Ocarina",
+        "Bombchus",
+        "Hookshot/Longshot",
+        "Ice Arrows",
+        "Farore's Wind",
+        "Boomerang",
+        "Lens of Truth",
+        "Magic Beans",
+        "Megaton Hammer",
+        "Light Arrows",
+        "Nayru's Love",
+        "Bottle 1",
+        "Bottle 2",
+        "Bottle 3",
+        "Bottle 4",
+        "Adult Trade Slot",
+        "Child Trade Slot",
+        "Unused (Bullet Bag / Quiver)",
+        "Kokiri Sword",
+        "Master Sword",
+        "Big Goron Sword",
+        "Bomb Bag",
+        "Deku Shield",
+        "Hylian Shield",
+        "Mirror Shield",
+        "Unused (Strength Upgrade)",
+        "Kokiri Tunic",
+        "Goron Tunic",
+        "Zora Tunic",
+        "Scale",
+        "Kokiri Boots",
+        "Iron Boots",
+        "Hover Boots"
+      ],
+      "item_names": [
+        "Deku Sticks",
+        "Deku Nuts",
+        "Bombs",
+        "Bow",
+        "Fire Arrows",
+        "Din's Fire",
+        "Slingshot",
+        [
+          "Fairy Ocarina",
+          "Ocarina of Time"
+        ],
+        "Bombchus",
+        [
+          "Hookshot",
+          "Longshot"
+        ],
+        "Ice Arrows",
+        "Farore's Wind",
+        "Boomerang",
+        "Lens of Truth",
+        "Magic Beans",
+        "Megaton Hammer",
+        "Light Arrows",
+        "Nayru's Love",
+        [
+          "Empty Bottle",
+          "Red Potion",
+          "Green Potion",
+          "Blue Potion",
+          "Fairy",
+          "Fish",
+          "Milk",
+          "Letter in a Bottle",
+          "Blue Fire",
+          "Bug",
+          "Big Poe",
+          "Lon-Lon Milk (Half)",
+          "Poe"
+        ],
+        [
+          "Weird Egg",
+          "Chicken",
+          "Zelda's Letter",
+          "Keaton Mask",
+          "Skull Mask",
+          "Spooky Mask",
+          "Bunny Hood",
+          "Goron Mask",
+          "Zora Mask",
+          "Gerudo Mask",
+          "Mask of Truth",
+          "SOLD OUT"
+        ],
+        [
+          "Pocket Egg",
+          "Pocket Cucco",
+          "Cojiro",
+          "Odd Mushroom",
+          "Odd Potion",
+          "Poacher's Saw",
+          "Goron's Sword (Broken)",
+          "Prescription",
+          "Eyeball Frog",
+          "Eye Drops",
+          "Claim Check"
+        ],
+        "Kokiri Sword",
+        "Master Sword",
+        "Big Goron Sword",
+        "Deku Shield",
+        "Hylian Shield",
+        "Mirror Shield",
+        "Kokiri Tunic",
+        "Goron Tunic",
+        "Zora Tunic",
+        "Kokiri Boots",
+        "Iron Boots",
+        "Hover Boots",
+        [
+          "Bullet Bag 30",
+          "Bullet Bag 40",
+          "Bullet Bag 50",
+          "Quiver 30",
+          "Quiver 40",
+          "Quiver 50"
+        ],
+        [
+          "Bomb Bag 20",
+          "Bomb Bag 30",
+          "Bomb Bag 40"
+        ],
+        [
+          "Goron Bracelet",
+          "Silver Gauntlets",
+          "Golden Gauntlets"
+        ],
+        [
+          "Silver Scale",
+          "Golden Scale"
+        ]
+      ],
+      "slot_item_map": {
+        "19": 18,
+        "20": 18,
+        "21": 18,
+        "22": 19,
+        "23": 20,
+        "24": 33,
+        "25": 21,
+        "26": 22,
+        "27": 23,
+        "28": 34,
+        "29": 24,
+        "30": 25,
+        "31": 26,
+        "32": 35,
+        "33": 27,
+        "34": 28,
+        "35": 29,
+        "36": 36,
+        "37": 30,
+        "38": 31,
+        "39": 32
+      },
+      "item_map": {
+        "22": 23,
+        "23": 22,
+        "24": 25,
+        "25": 26,
+        "26": 27,
+        "27": 29,
+        "28": 30,
+        "29": 31,
+        "30": 33,
+        "31": 34,
+        "32": 35,
+        "33": 37,
+        "34": 38,
+        "35": 39
+      }
+    }
+  },
+  "icon_item_static": {
+    "all": {
+      "no_icons": "0x7D",
+      "no_items": 49,
+      "image_size": "0x1000",
+      "width": 32,
+      "height": 32,
+      "del_images": [7, 10, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47],
+      "no_equipment": 12,
+      "equipment_offset": "59"
+    }
+  }
+}

@@ -36,9 +36,9 @@ class FileTableHeader:
 
 class FileTable:
     def __init__(self, rom_file: memoryview, filetable_offset: int):
-        self.load_config()
         self.header = FileTableHeader(rom_file[:FileTableHeader.size])
         print(self.header)
+        self.load_config()
         self.files = []
         end_offset = 0
         cur_offset = FileTableHeader.size
@@ -51,7 +51,19 @@ class FileTable:
 
     def load_config(self, filename="config.json"):
         with open(filename) as json_file:
-            self.config = json.load(self.config)
+            self.config = json.load(json_file)
+            for version, build_date in self.config["versions"].items():
+                if build_date == bytes(self.header.build_date).decode():
+                    self.version = version
+                    break
+            else:
+                assert False, "Version not supported! Check config.json."
+            for k, v in self.config.items():
+                if "all" in v.keys():
+                    added = v["all"]
+                    for version, v2 in v.items():
+                        self.config[k][version].update(added)
+            print(self.version)
 
     def get_file(self, file_id, rom_file):
         file_struct = self.files[file_id]
@@ -65,3 +77,5 @@ class RomLoader:
         self.filetable_offset = rom_file.find(b"zelda@")
         memview = memoryview(rom_file)
         self.filetable = FileTable(memview[self.filetable_offset:], self.filetable_offset)
+        self.version = self.filetable.version
+        self.config = self.filetable.config
