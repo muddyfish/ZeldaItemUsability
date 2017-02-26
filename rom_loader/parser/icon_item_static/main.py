@@ -4,7 +4,6 @@ from PIL import Image
 
 
 class ItemIconStatic:
-    file_id = 7
     filename = "icon_item_static"
 
     def __init__(self, file: memoryview,

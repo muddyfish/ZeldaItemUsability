@@ -1,14 +1,26 @@
 {
   "versions": {
     "Debug": "03-02-21 00:16:31",
-    "NTSC 1.0": "98-10-21 04:56:31"
+    "NTSC 1.0": "98-10-21 04:56:31",
+    "JPN 1.0": "98-10-21 04:56:31",
+    "NTSC 1.2": "98-11-12 18:17:03"
   },
   "ovl_kaleido_scope": {
     "Debug": {
-      "item_usability_offset": "0x0173DC"
+      "item_usability_offset": "0x0173DC",
+      "file_id": 33
     },
     "NTSC 1.0": {
-      "item_usability_offset": "0x0165B4"
+      "item_usability_offset": "0x0165B4",
+      "file_id": 33
+    },
+    "JPN 1.0": {
+      "item_usability_offset": "0x0165B4",
+      "file_id": 33
+    },
+    "NTSC 1.2": {
+      "item_usability_offset": "0x0165B4",
+      "file_id": 33
     },
     "all": {
       "item_usability_length": 128,
@@ -160,8 +172,8 @@
         "19": 18,
         "20": 18,
         "21": 18,
-        "22": 19,
-        "23": 20,
+        "22": 20,
+        "23": 19,
         "24": 33,
         "25": 21,
         "26": 22,
@@ -198,6 +210,18 @@
     }
   },
   "icon_item_static": {
+    "Debug": {
+      "file_id": 7
+    },
+    "NTSC 1.0": {
+      "file_id": 8
+    },
+    "JPN 1.0": {
+      "file_id": 8
+    },
+    "NTSC 1.2": {
+      "file_id": 8
+    },
     "all": {
       "no_icons": "0x7D",
       "no_items": 49,

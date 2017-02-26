@@ -3,6 +3,8 @@ from rom_loader.parser.ovl_kaleido_scope.main import OvlKaleidoScopeParser
 from rom_loader.parser.icon_item_static.main import ItemIconStatic
 
 import mmap
+import os
+from time import time
 
 from tkinter import *
 import tkinter.filedialog as filedialog
@@ -16,10 +18,13 @@ class Main:
         self.create_widgets()
         #self.load_rom()
         #self.finalise_load()
+
+        self.root.protocol("WM_DELETE_WINDOW", self.quit)
         self.root.mainloop()
 
     def create_widgets(self):
-        self.root.title("ItemUsability Editor")
+        self.root.title("Link's Toybox")
+        self.root.iconbitmap('chu.ico')
         self.root_frame = Frame(self.root, height=384, width=455)
         self.root_frame.pack()
 
@@ -39,12 +44,7 @@ class Main:
         self.clicked_check_child.pack()
 
         self.root_menu = Menu(self.root)
-        self.menu_file = Menu(self.root_menu, tearoff=0)
-        self.menu_file.add_command(label="Open ROM", command=self.select_rom)
-        self.menu_file.add_command(label="Save", command=self.save, state="disabled")
-        self.menu_file.add_command(label="Exit", command=self.root.quit)
-
-        self.root_menu.add_cascade(label="File", menu=self.menu_file)
+        self.root_menu.add_command(label="Open ROM", command=self.select_rom)
         self.root.config(menu=self.root_menu)
 
     def select_rom(self):
@@ -55,7 +55,6 @@ class Main:
             self.finalise_load()
 
     def finalise_load(self):
-        self.menu_file.entryconfig("Save", state="normal")
         self.images = []
         self.tk_images = []
         for i, im in enumerate(self.icon_parser.item_images):
@@ -78,28 +77,39 @@ class Main:
         self.update_checkbuttons()
 
     def load_rom(self, filename="ZELOOTMA.z64"):
-        rom_file = open(filename, "rb+")
-        self.rom_mmap = mmap.mmap(rom_file.fileno(), 0, access=mmap.ACCESS_WRITE)
-        self.rom_mmap.seek(0)
-        self.loader = RomLoader(self.rom_mmap)
-        self.pause_menu_parser = self.load_parser(OvlKaleidoScopeParser, self.loader, self.rom_mmap)
-        self.icon_parser = self.load_parser(ItemIconStatic, self.loader, self.rom_mmap)
-        rom_file.close()
+        with open(filename, "rb+") as rom_file:
+            self.filename = filename
+            self.rom_mmap = mmap.mmap(rom_file.fileno(), 0, access=mmap.ACCESS_WRITE)
+            self.rom_mmap.seek(0)
+            self.loader = RomLoader(self.rom_mmap)
+            self.pause_menu_parser = self.load_parser(OvlKaleidoScopeParser, self.loader, self.rom_mmap)
+            self.icon_parser = self.load_parser(ItemIconStatic, self.loader, self.rom_mmap)
+
+    def quit(self):
+        try:
+            self.save()
+        except AttributeError:
+            pass
+        self.root.destroy()
 
     def save(self):
         self.rom_mmap.flush()
+        os.utime(self.filename, (time(), time()))
+
 
     def load_parser(self, parser, loader, rom_mmap):
-        file = loader.filetable.get_file(parser.file_id, rom_mmap)
         config = loader.config[parser.filename].get(loader.version, {})
         config.update(loader.config[parser.filename].get("all", {}))
         for k, v in config.items():
             if k.endswith("_offset") or (isinstance(v, str) and v.startswith("0x")):
                 config[k] = int(v, 0)
+        file = loader.filetable.get_file(config["file_id"], rom_mmap)
+        del config["file_id"]
         return parser(file, **config)
 
     def icon_pressed(self, event):
-        self.clicked = event.widget.find_closest(event.x, event.y)[0] - 1
+
+        self.clicked = (event.widget.find_closest(event.x, event.y)[0] - 1) % (len(self.pause_menu_parser.slot_names)-4)
         self.clicked_image = ImageTk.PhotoImage(master=self.canvas, image=self.icon_parser.images[self.clicked])
         self.clicked_canvas.create_image(24, 24, image=self.clicked_image)
         if str(self.clicked) in self.pause_menu_parser.item_map:
@@ -124,10 +134,14 @@ class Main:
                 self.clicked_check_adult.config(state="disabled")
             if child:
                 self.clicked_check_child.config(state="disabled")
-        struct = {(1,0): 0,
-                  (0,1): 1,
-                  (1,1): 9}[adult, child]
+        struct = {(1, 0): 0,
+                  (0, 1): 1,
+                  (1, 1): 9}[adult, child]
         self.pause_menu_parser[self.clicked] = struct
+        try:
+            self.save()
+        except OSError:
+            pass
 
 
 def main():
